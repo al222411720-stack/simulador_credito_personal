@@ -1,55 +1,127 @@
-
-index.html
-100%
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plataforma de Simulación de Crédito</title>
+  <title>Nova · Simulador de Crédito Personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Simulador de Crédito Personal</h1>
-    <form id="credit-form">
-      <label for="monto">Monto del Crédito Solicitado ($):</label>
-      <input type="number" id="monto" value="150000" required>
-      
-      <label for="tasa">Tasa de Interés Anual Ordinaria (%):</label>
-      <input type="number" id="tasa" value="34" step="0.1" required>
-      
-      <label for="plazo">Plazo del Financiamiento (Meses):</label>
-      <select id="plazo">
-        <option value="12">12 meses</option>
-        <option value="24">24 meses</option>
-        <option value="36">36 meses</option>
-        <option value="48" selected>48 meses</option>
-      </select>
 
-      <button type="button" id="btn-calcular">Calcular Amortización</button>
-    </form>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__mark">N</span>
+      <span class="topbar__name">Nova Crédito</span>
+    </div>
+    <span class="topbar__tag">Simulador de amortización constante</span>
+  </header>
 
-    <!-- Tabla para renderizar los resultados de amortización -->
-    <table id="tabla-amortizacion">
-      <thead>
-        <tr>
-          <th>Mes</th>
-          <th>Saldo Inicial</th>
-          <th>Capital</th>
-          <th>Interés</th>
-          <th>IVA (16%)</th>
-          <th>Pago Total</th>
-          <th>Saldo Final</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Filas generadas dinámicamente mediante JavaScript -->
-      </tbody>
-    </table>
-  </div>
+  <main class="container">
+
+    <section class="panel panel--form">
+      <div class="grano grano--uno"></div>
+      <div class="grano grano--dos"></div>
+      <h1>Calcula tu crédito personal</h1>
+      <p class="subtitle">Pago a capital fijo, interés sobre saldo insoluto e IVA incluido en cada mensualidad.</p>
+
+      <div class="consejo">
+        <span class="consejo__icono">☕</span>
+        <p><strong>Antes de firmar:</strong> en la amortización constante el pago total baja mes con mes, porque el interés se calcula sobre un saldo insoluto cada vez más pequeño.</p>
+      </div>
+
+      <form id="credit-form">
+        <div class="field">
+          <label for="monto">Monto del crédito solicitado</label>
+          <div class="field__input">
+            <span class="field__prefix">$</span>
+            <input type="number" id="monto" value="150000" min="1000" step="1000" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tasa">Tasa de interés anual ordinaria</label>
+          <div class="field__input">
+            <input type="number" id="tasa" value="34" min="0" step="0.1" required>
+            <span class="field__suffix">%</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="plazo">Plazo del financiamiento</label>
+          <select id="plazo">
+            <option value="12">12 meses</option>
+            <option value="24">24 meses</option>
+            <option value="36">36 meses</option>
+            <option value="48" selected>48 meses</option>
+            <option value="60">60 meses</option>
+          </select>
+        </div>
+
+        <button type="button" id="btn-calcular" class="btn-primary">Calcular amortización</button>
+      </form>
+    </section>
+
+    <section class="panel panel--resultado" id="panel-resultado" hidden>
+      <h2>Resumen del financiamiento</h2>
+
+      <div class="resumen">
+        <div class="resumen__item">
+          <span class="resumen__label">Pago del primer mes</span>
+          <span class="resumen__valor" id="res-primer-pago">$0.00</span>
+        </div>
+        <div class="resumen__item">
+          <span class="resumen__label">Total de intereses</span>
+          <span class="resumen__valor" id="res-total-interes">$0.00</span>
+        </div>
+        <div class="resumen__item">
+          <span class="resumen__label">Total de IVA</span>
+          <span class="resumen__valor" id="res-total-iva">$0.00</span>
+        </div>
+        <div class="resumen__item resumen__item--destacado">
+          <span class="resumen__label">Total a pagar</span>
+          <span class="resumen__valor" id="res-total-pagar">$0.00</span>
+        </div>
+      </div>
+
+      <div class="composicion">
+        <span class="composicion__titulo">Composición del total pagado</span>
+        <div class="composicion__barra" id="barra-composicion">
+          <div class="composicion__segmento composicion__segmento--capital" id="seg-capital"></div>
+          <div class="composicion__segmento composicion__segmento--interes" id="seg-interes"></div>
+          <div class="composicion__segmento composicion__segmento--iva" id="seg-iva"></div>
+        </div>
+        <div class="composicion__leyenda">
+          <span><i class="punto punto--capital"></i>Capital</span>
+          <span><i class="punto punto--interes"></i>Interés</span>
+          <span><i class="punto punto--iva"></i>IVA</span>
+        </div>
+      </div>
+
+      <div class="tabla-wrap">
+        <table id="tabla-amortizacion">
+          <thead>
+            <tr>
+              <th>Periodo</th>
+              <th>Saldo insoluto</th>
+              <th>Amortización a capital</th>
+              <th>Interés</th>
+              <th>IVA sobre interés</th>
+              <th>Pago mensual</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    Proyecto académico · Desarrollo Web Integral · Simulador con fines educativos
+  </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-Page 2 of 5 Page 3 of 5 Page 4 of 5 Page 5 of 5

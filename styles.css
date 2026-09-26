@@ -1,89 +1,411 @@
-
-styles.css
-100%
-CSS
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f4f8;
-  color: #333;
-  padding: 30px;
+:root {
+  --cafe-oscuro: #3a2417;
+  --cafe-medio: #6b4530;
+  --naranja: #c1502e;
+  --naranja-claro: #e8833f;
+  --naranja-suave: #f3a666;
+  --crema: #fbf3ea;
+  --papel: #fffaf4;
+  --carbon: #2b1d14;
+  --gris: #8a7563;
+  --borde: #ecdcc9;
+  --radio: 10px;
 }
 
-.container {
-  max-width: 900px;
-  background: #ffffff;
-  margin: 0 auto;
-  padding: 30px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, Segoe UI, sans-serif;
+  background: var(--crema);
+  color: var(--carbon);
+  line-height: 1.5;
+}
+
+/* Barra superior */
+.topbar {
+  background: var(--cafe-oscuro);
+  color: var(--crema);
+  padding: 18px 32px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: var(--naranja);
+  color: var(--papel);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+
+.topbar__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+
+.topbar__tag {
+  color: #d8b79c;
+  font-size: 0.85rem;
+}
+
+/* Layout principal */
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 40px 24px 60px;
+  display: grid;
+  gap: 28px;
+}
+
+.panel {
+  position: relative;
+  background: var(--papel);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 32px;
+  overflow: hidden;
+}
+
+/* Pequeños "granos de café" decorativos en la esquina del panel de captura */
+.grano {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.12;
+  background: var(--cafe-medio);
+}
+
+.grano::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 2px;
+  height: 70%;
+  background: var(--papel);
+  border-radius: 2px;
+}
+
+.grano--uno {
+  width: 46px;
+  height: 60px;
+  top: -14px;
+  right: 36px;
+  transform: rotate(18deg);
+}
+
+.grano--dos {
+  width: 30px;
+  height: 40px;
+  top: 30px;
+  right: 90px;
+  transform: rotate(-10deg);
+  opacity: 0.08;
 }
 
 h1 {
-  color: #003b73;
-  text-align: center;
-  margin-bottom: 25px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.9rem;
+  margin: 0 0 6px;
+  color: var(--cafe-oscuro);
 }
 
-form {
+h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  margin: 0 0 20px;
+  color: var(--cafe-oscuro);
+}
+
+.subtitle {
+  color: var(--gris);
+  margin: 0 0 20px;
+  max-width: 60ch;
+}
+
+/* Caja de consejo */
+.consejo {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #fdece0;
+  border: 1px solid #f2cca4;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 28px;
+}
+
+.consejo__icono {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.consejo p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cafe-oscuro);
+}
+
+/* Formulario */
+#credit-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 20px;
 }
 
-label {
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
   font-weight: 600;
-  align-self: center;
-  color: #4a5568;
+  color: var(--cafe-medio);
 }
 
-input, select, button {
-  padding: 10px;
-  border: 1px solid #cbd5e0;
-  border-radius: 4px;
-  font-size: 14px;
+.field__input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--crema);
+  overflow: hidden;
 }
 
-button {
-  grid-column: span 2;
-  background-color: #003b73;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+.field__input:focus-within {
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 3px rgba(193, 80, 46, 0.15);
+}
+
+.field__prefix,
+.field__suffix {
+  padding: 0 12px;
+  color: var(--gris);
+  font-weight: 600;
+}
+
+.field input,
+.field select {
   border: none;
-  transition: background 0.3s;
+  background: transparent;
+  padding: 12px 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--carbon);
+  width: 100%;
 }
 
-button:hover {
-  background-color: #002850;
+.field select {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--crema);
+  padding: 12px;
 }
 
-/* Estilos de la tabla de amortización */
+.field input:focus,
+.field select:focus {
+  outline: none;
+}
+
+.btn-primary {
+  grid-column: 1 / -1;
+  margin-top: 6px;
+  background: var(--naranja);
+  color: var(--papel);
+  border: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--naranja-claro);
+}
+
+.btn-primary:active {
+  background: var(--cafe-medio);
+}
+
+/* Resumen de resultados */
+.resumen {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.resumen__item {
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.resumen__item--destacado {
+  background: var(--cafe-oscuro);
+  border-color: var(--cafe-oscuro);
+}
+
+.resumen__item--destacado .resumen__label {
+  color: #d8b79c;
+}
+
+.resumen__item--destacado .resumen__valor {
+  color: var(--naranja-suave);
+}
+
+.resumen__label {
+  font-size: 0.78rem;
+  color: var(--gris);
+}
+
+.resumen__valor {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cafe-oscuro);
+}
+
+/* Composición del pago (barra apilada) */
+.composicion {
+  margin-bottom: 28px;
+}
+
+.composicion__titulo {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cafe-medio);
+  margin-bottom: 8px;
+}
+
+.composicion__barra {
+  display: flex;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--borde);
+}
+
+.composicion__segmento {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.composicion__segmento--capital { background: var(--cafe-medio); }
+.composicion__segmento--interes { background: var(--naranja); }
+.composicion__segmento--iva { background: var(--naranja-suave); }
+
+.composicion__leyenda {
+  display: flex;
+  gap: 18px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: var(--gris);
+}
+
+.composicion__leyenda span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.punto {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.punto--capital { background: var(--cafe-medio); }
+.punto--interes { background: var(--naranja); }
+.punto--iva { background: var(--naranja-suave); }
+
+/* Tabla de amortización */
+.tabla-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  font-size: 0.9rem;
+  min-width: 620px;
 }
 
-th, td {
-  border: 1px solid #e2e8f0;
-  padding: 10px;
-  text-align: right;
-  font-size: 13px;
+thead th {
+  text-align: left;
+  background: #f4e6d6;
+  color: var(--cafe-oscuro);
+  font-weight: 600;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--borde);
+  white-space: nowrap;
 }
 
-th {
-  background-color: #003b73;
-  color: white;
+tbody td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #f1e3d1;
+  color: var(--carbon);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background: #fdf6ee;
+}
+
+tbody tr:hover {
+  background: #fbe9d7;
+}
+
+.footer {
   text-align: center;
+  color: var(--gris);
+  font-size: 0.8rem;
+  padding: 20px;
 }
 
-tr:nth-child(even) {
-  background-color: #f7fafc;
+/* Responsivo */
+@media (max-width: 640px) {
+  #credit-form {
+    grid-template-columns: 1fr;
+  }
+  .resumen {
+    grid-template-columns: 1fr 1fr;
+  }
+  .panel {
+    padding: 22px;
+  }
 }
-
-td:first-child {
-  text-align: center;
-  font-weight: bold;
-}
-Displaying styles.css.
