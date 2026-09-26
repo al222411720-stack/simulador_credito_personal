@@ -1,30 +1,89 @@
-body {
-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-background-color: #f0f4f8;
 
-color: #333;
-padding: 30px;
+styles.css
+100%
+CSS
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  padding: 30px;
 }
+
 .container {
-max-width: 900px;
-background: #ffffff;
-margin: 0 auto;
-padding: 30px;
-border-radius: 8px;
-box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  max-width: 900px;
+  background: #ffffff;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+
 h1 {
-color: #003b73;
-text-align: center;
-margin-bottom: 25px;
+  color: #003b73;
+  text-align: center;
+  margin-bottom: 25px;
 }
+
 form {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 15px;
-margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
 }
+
 label {
-font-weight: 600;
-align-self: center;
-color: #4a5568;
+  font-weight: 600;
+  align-self: center;
+  color: #4a5568;
+}
+
+input, select, button {
+  padding: 10px;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button {
+  grid-column: span 2;
+  background-color: #003b73;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #002850;
+}
+
+/* Estilos de la tabla de amortización */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+  text-align: right;
+  font-size: 13px;
+}
+
+th {
+  background-color: #003b73;
+  color: white;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f7fafc;
+}
+
+td:first-child {
+  text-align: center;
+  font-weight: bold;
+}
+Displaying styles.css.
