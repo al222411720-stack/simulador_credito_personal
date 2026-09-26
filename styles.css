@@ -77,48 +77,10 @@ body {
 }
 
 .panel {
-  position: relative;
   background: var(--papel);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
   padding: 32px;
-  overflow: hidden;
-}
-
-/* Pequeños "granos de café" decorativos en la esquina del panel de captura */
-.grano {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.12;
-  background: var(--cafe-medio);
-}
-
-.grano::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 2px;
-  height: 70%;
-  background: var(--papel);
-  border-radius: 2px;
-}
-
-.grano--uno {
-  width: 46px;
-  height: 60px;
-  top: -14px;
-  right: 36px;
-  transform: rotate(18deg);
-}
-
-.grano--dos {
-  width: 30px;
-  height: 40px;
-  top: 30px;
-  right: 90px;
-  transform: rotate(-10deg);
-  opacity: 0.08;
 }
 
 h1 {
@@ -137,31 +99,8 @@ h2 {
 
 .subtitle {
   color: var(--gris);
-  margin: 0 0 20px;
+  margin: 0 0 28px;
   max-width: 60ch;
-}
-
-/* Caja de consejo */
-.consejo {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: #fdece0;
-  border: 1px solid #f2cca4;
-  border-radius: 8px;
-  padding: 14px 16px;
-  margin-bottom: 28px;
-}
-
-.consejo__icono {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.consejo p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: var(--cafe-oscuro);
 }
 
 /* Formulario */
